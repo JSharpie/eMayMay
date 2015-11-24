@@ -1,0 +1,7 @@
+<h1>Cart Page</h1>
+<div ng-repeat="item in cartItems">
+  <h3>{{item.name}}</h3>
+  <img class='itemImg' ng-src='{{item.url}}'>
+  <h4>{{item.price}}</h4>
+  <button type="button" name="button" ng-click='removeItem(item)'>Delete</button>
+</div>
