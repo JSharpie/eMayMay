@@ -13,6 +13,8 @@
         return $http.get(url);
       };
       var addToCart = function(cartItem){
+        delete cartItem._id;
+        console.log(cartItem);
         $http.post('http://tiny-tiny.herokuapp.com/collections/eMayMayCart', cartItem).then(function(res){
           console.log(res);
         });
@@ -20,11 +22,25 @@
       var remove = function(item){
         $http.delete(url+'/'+item._id);
       };
+      var addReview = function(item, review){
+        if(!item.reviews){
+          item = angular.extend({}, item, {reviews:[review]});
+        }
+        else{
+          item.reviews.push(review);
+        }
+        return $http.put(url + '/' + item._id, item);
+      };
+      var edit = function(item){
+        return $http.put(url+'/'+item._id, item);
+      }
       return {
         addItem: addItem,
         getItems: getItems,
         remove: remove,
-        addToCart: addToCart
+        addToCart: addToCart,
+        addReview: addReview,
+        edit: edit
       };
     })
     .factory('CartService', function($http){
@@ -34,11 +50,26 @@
       };
       var removeItem = function(item){
         console.log(url + '/' + item._id);
-        $http.delete(url+'/'+item._id);
+        $http.get(url).then(function(res){
+          $http.delete(url + '/' + item._id);
+        });
       };
+      var totalCost = function(items){
+        var cost = 0;
+          for(var i = 0; i < items.length; i++){
+            cost += parseInt(items[i].price);
+          }
+          console.log(cost);
+          return cost;
+      }
+      var checkout = function(items){
+        
+      }
       return {
         getCart: getCart,
-        removeItem: removeItem
+        removeItem: removeItem,
+        totalCost: totalCost,
+        checkout: checkout
       };
     });
 })();

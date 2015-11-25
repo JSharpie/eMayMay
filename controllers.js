@@ -14,13 +14,26 @@
       $scope.addToCart = function(cartItem){
         ShopService.addToCart(cartItem);
       };
+      $scope.remove = function(item){
+        ShopService.remove(item);
+      };
+      $scope.addReview = function(item, review){
+        ShopService.addReview(item, review);
+      };
+      $scope.edit = function(item){
+        ShopService.edit(item);
+      }
     })
     .controller('CartController', function($scope, CartService){
+      $scope.cartItems = [];
       CartService.getCart().success(function(items){
         $scope.cartItems = items;
-      });
-      $scope.removeItem = function(item){
-        CartService.removeItem(item);
-      }
+        console.log($scope.cartItems);
+        $scope.removeItem = function(item){
+          console.log(item);
+          CartService.removeItem(item);
+        };
+      $scope.totalCost = CartService.totalCost($scope.cartItems);
     });
+  });
 })();
