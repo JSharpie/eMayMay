@@ -33,6 +33,9 @@
       };
       var edit = function(item){
         return $http.put(url+'/'+item._id, item);
+      };
+      var detail = function(itemId){
+        return $http.get(url + '/' + itemId);
       }
       return {
         addItem: addItem,
@@ -40,7 +43,8 @@
         remove: remove,
         addToCart: addToCart,
         addReview: addReview,
-        edit: edit
+        edit: edit,
+        detail: detail
       };
     })
     .factory('CartService', function($http){
@@ -63,7 +67,7 @@
           return cost;
       }
       var checkout = function(items){
-        
+
       }
       return {
         getCart: getCart,

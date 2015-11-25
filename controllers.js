@@ -4,10 +4,21 @@
     .controller('MainController', function ($scope) {
       $scope.msg = "test";
     })
-    .controller('ShopController', function ($scope, ShopService) {
+    .controller('ShopController', function ($scope, ShopService, $routeParams) {
       ShopService.getItems().success(function (items) {
         $scope.allItems = items;
       });
+      if($routeParams.itemId){
+        ShopService.detail($routeParams.itemId).success(function(data){
+          $scope.item = [data];
+        });
+      }
+      else{
+        ShopService.getItems().success(function(item){
+          console.log(item);
+          $scope.item = item;
+        });
+      }
       $scope.addItem = function(newItem){
         ShopService.addItem(newItem);
       };

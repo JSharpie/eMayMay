@@ -7,7 +7,7 @@
     .config(function($routeProvider){
       $routeProvider
         .when('/', {
-          template: '<h1>eMayMay</h1><a href="#/shop">buy </a><a href="#/admin">add items </a><a href="#/cart">view cart </a><a href="#/">home</a>',
+          template: '',
           controller: 'MainController'
         })
         .when('/shop', {
@@ -22,7 +22,7 @@
           templateUrl: 'views/showCart.html',
           controller: 'CartController'
         })
-        .when('/shop/:_id', {
+        .when('/shop/:itemId', {
           templateUrl: 'views/showDetail.html',
           controller: 'CartController'
         })
