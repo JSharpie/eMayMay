@@ -22,9 +22,9 @@
           templateUrl: 'views/showCart.html',
           controller: 'CartController'
         })
-        .when('/shop/:itemId', {
+        .when('/shop/:_id', {
           templateUrl: 'views/showDetail.html',
-          controller: 'CartController'
+          controller: 'ShopController'
         })
         .when('/404', {
           templateUrl: 'views/404.html'

@@ -7,15 +7,17 @@
     .controller('ShopController', function ($scope, ShopService, $routeParams) {
       ShopService.getItems().success(function (items) {
         $scope.allItems = items;
+        console.log($routeParams);
       });
-      if($routeParams.itemId){
-        ShopService.detail($routeParams.itemId).success(function(data){
-          $scope.item = [data];
+      if($routeParams._id){
+        ShopService.detail($routeParams._id).success(function(data){
+          console.log(data);
+          $scope.item = data;
+          console.log($scope.item);
         });
       }
       else{
         ShopService.getItems().success(function(item){
-          console.log(item);
           $scope.item = item;
         });
       }
