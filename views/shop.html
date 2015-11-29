@@ -3,16 +3,13 @@
   <h3>{{item.name}}</h3>
   <img class='itemImg' ng-src='{{item.url}}'>
   <h4>{{item.price}}</h4>
-  <h5>{{item.reviews.join(' ')}}</h5>
   <button type="button" name="addItem" ng-click="addToCart(item)">add</button>
   <button type="text" class="seedetails"><a href="#/shop/{{item._id}}" >See Details</a></button>
   <form ng-submit="edit(item)">
     <input name="name" ng-model="item.name">
     <input name="name" ng-model="item.url">
     <input name="name" ng-model="item.price">
-  </form>
-  <form ng-submit="addReview(item, newItem.review)">
-    <input name="name" ng-model="newItem.review">
+    <input type="submit" name="name" value="edit">
   </form>
   <button type="button" name="button" ng-click="remove(item)">delete</button>
 </div>

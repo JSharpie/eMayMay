@@ -2,4 +2,7 @@
 <img class='itemImg' ng-src='{{item.url}}'>
 <h4>{{item.price}}</h4>
 <h5>{{item.reviews.join(' ')}}</h5>
+<form ng-submit="addReview(item, newItem.review)">
+  <input name="name" ng-model="newItem.review">
+</form>
 <a href="#/shop">Back to shop</a>

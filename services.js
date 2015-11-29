@@ -65,10 +65,12 @@
           }
           console.log(cost);
           return cost;
-      }
+      };
       var checkout = function(items){
-
-      }
+        $http.get(url).then(function(res){
+          $http.delete(url + '/' + items._id);
+        });
+      };
       return {
         getCart: getCart,
         removeItem: removeItem,
